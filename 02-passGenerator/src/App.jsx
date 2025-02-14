@@ -7,6 +7,17 @@ function App() {
   const [number, setNumber] = useState(false);
   const [character, setCharacter] = useState(false);
   const [password, setPassword] = useState("");
+  const [copyPass, setCopyPass] = useState("");
+  const [IsPressed, setIsPressed] = useState(false);
+
+  const copypassFunction = () => {
+
+    console.log("clicked on copy button ");
+    console.log(copyPass);
+    
+    window.navigator.clipboard.writeText(copyPass);
+    
+  }
   const generatePassword = useCallback(()=> {
 
     let pass = "";
@@ -27,6 +38,7 @@ function App() {
     }
     
     setPassword(pass);
+    setCopyPass(pass);
 
   } ,[length,number,character]);
 
@@ -46,12 +58,13 @@ function App() {
       className=' bg-white outline-none w-full py-1 px-3' 
       value={password} 
       readOnly/>
-    <button className='bg-blue-500 text-white px-3 py-2 outline-none  shrink-0'>copy</button></div>
+    <button className={`transition-colors  ${ IsPressed ? 'bg-red-500' : 'bg-blue-500'} text-white px-3 py-2 outline-none  shrink-0`}  onMouseDown={() => setIsPressed(true)}
+      onMouseUp={() => setIsPressed(false)} onClick={copypassFunction}>copy</button></div>
    <div className='flex items-center gap-x-1'> 
     <input className='w-20 cursor-pointer' type="range" min={6} max={18} 
     value={length}
     onChange={(e)=>{setLength(e.target.value)}}
-    /> <span className='m-1.5'>Length :{length}</span>
+    /> <span className='m-1.5'>{length}</span>
     <input type="checkbox" defaultChecked={character} name="character" id="char" value = "true" onChange={() => setCharacter((prev) => !prev)}/> <span className='w-full mt-1.5'>Add Character's</span> 
     <input type="checkbox" defaultChecked ={number} name="number" id="num" value = "true" onChange={() => setNumber((prev) => !prev)} /> <span className='w-full mt-1.5' >Add Number's </span>
     </div>
