@@ -58,8 +58,8 @@ function App() {
       className=' bg-white outline-none w-full py-1 px-3' 
       value={password} 
       readOnly/>
-    <button className={`transition-colors  ${ IsPressed ? 'bg-red-500' : 'bg-blue-500'} text-white px-3 py-2 outline-none  shrink-0`}  onMouseDown={() => setIsPressed(true)}
-      onMouseUp={() => setIsPressed(false)}  onMouseLeave={() => setIsPressed(false)} onClick={copypassFunction}>copy</button></div>
+    <button className={`transition-colors  ${IsPressed ? 'bg-red-500' : 'bg-blue-500'} text-white px-3 py-2 outline-none  shrink-0`}  onMouseDown={() => setIsPressed(true)}
+      onMouseUp={() => setIsPressed(false)} onMouseLeave={() => setIsPressed(false)}  onClick={copypassFunction}>copy</button></div>
    <div className='flex items-center gap-x-1'> 
     <input className='w-20 cursor-pointer' type="range" min={6} max={18} 
     value={length}
